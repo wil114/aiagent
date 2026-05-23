@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import IntersectObserver from '@/components/common/IntersectObserver';
 import { Toaster } from '@/components/ui/sonner';
+import GlobalCircuitBreakerAlert from '@/components/common/GlobalCircuitBreakerAlert';
 import Sidebar from '@/components/layout/Sidebar';
 import Header from '@/components/layout/Header';
 import { mockSystemStatus } from '@/data/mockData';
@@ -67,6 +68,7 @@ const App: React.FC = () => {
           </div>
         </div>
         <Toaster />
+        <GlobalCircuitBreakerAlert />
       </Router>
     </SystemContext.Provider>
   );

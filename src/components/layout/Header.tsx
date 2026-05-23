@@ -71,11 +71,31 @@ const Header: React.FC<HeaderProps> = ({ systemStatus, onVersionChange, onRefres
       </div>
 
       <div className="flex items-center gap-3">
+        {/* 演示模式：显式熔断切换按钮 */}
+        <Button
+          variant={isCircuitBreakerOpen ? 'destructive' : 'outline'}
+          size="sm"
+          className={`h-8 text-[11px] gap-1.5 px-2.5 transition-colors ${
+            !isCircuitBreakerOpen && 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border-emerald-200 hover:text-emerald-800'
+          }`}
+          onClick={toggleCircuitBreaker}
+        >
+          {isCircuitBreakerOpen ? (
+            <>
+              <ShieldAlert className="w-3.5 h-3.5" />
+              解除熔断
+            </>
+          ) : (
+            <>
+              <ShieldAlert className="w-3.5 h-3.5 text-emerald-600" />
+              模拟熔断
+            </>
+          )}
+        </Button>
+
         {/* 熔断状态仪表 */}
         <div 
-          className="hidden md:flex items-center gap-2 border border-border rounded-md px-2 h-8 cursor-pointer hover:bg-muted"
-          onClick={toggleCircuitBreaker}
-          title="点击切换熔断测试状态"
+          className="hidden md:flex items-center gap-2 border border-border rounded-md px-2 h-8"
         >
           <span className="text-[10px] text-muted-foreground whitespace-nowrap">AI错误率</span>
           <Progress value={errorRate} className="w-16 h-1.5" />
