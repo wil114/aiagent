@@ -27,16 +27,16 @@ const demoSteps = [
           全球化消费企业每天面对海量市场信号。传统人工调研模式存在三大痛点：
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-          <Card className="p-3 bg-red-50/50 border-red-100">
-            <h4 className="text-xs font-bold text-red-700 mb-1">⏳ 极度耗时</h4>
+          <Card className="p-3 bg-red-500/10 border-red-500/20 shadow-none">
+            <h4 className="text-xs font-bold text-red-400 mb-1">⏳ 极度耗时</h4>
             <p className="text-[10px] text-muted-foreground">一篇包含多语种的跨市场简报，人工平均需要4-6小时。</p>
           </Card>
-          <Card className="p-3 bg-amber-50/50 border-amber-100">
-            <h4 className="text-xs font-bold text-amber-700 mb-1">🌫️ 幻觉与噪音</h4>
+          <Card className="p-3 bg-amber-500/10 border-amber-500/20 shadow-none">
+            <h4 className="text-xs font-bold text-amber-400 mb-1">🌫️ 幻觉与噪音</h4>
             <p className="text-[10px] text-muted-foreground">通用大模型常常编造不存在的法规，或被单一水军帖误导。</p>
           </Card>
-          <Card className="p-3 bg-blue-50/50 border-blue-100">
-            <h4 className="text-xs font-bold text-blue-700 mb-1">📉 错失窗口期</h4>
+          <Card className="p-3 bg-blue-500/10 border-blue-500/20 shadow-none">
+            <h4 className="text-xs font-bold text-blue-400 mb-1">📉 错失窗口期</h4>
             <p className="text-[10px] text-muted-foreground">日本市场降价了，美国合规收紧了，这些信号往往在两周后才传导到国内总部。</p>
           </Card>
         </div>
@@ -53,18 +53,18 @@ const demoSteps = [
           我们不是做一个简单的"AI总结工具"，而是打造一个<strong>战略智能引擎</strong>：
         </p>
         <div className="relative border border-border rounded-lg p-4 bg-muted/10 overflow-hidden">
-          <div className="absolute right-0 top-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10" />
+          <div className="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-bl-full -z-10" />
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <Badge variant="outline" className="shrink-0 w-12 justify-center">L3 决策</Badge>
+              <Badge variant="outline" className="shrink-0 w-12 justify-center border-indigo-500/30 bg-indigo-500/10 text-indigo-300">L3 决策</Badge>
               <span className="text-xs font-medium text-foreground">跨市场信号传导预测（预测日本变化对美国的影响）</span>
             </div>
             <div className="flex items-center gap-3">
-              <Badge variant="outline" className="shrink-0 w-12 justify-center">L2 洞察</Badge>
+              <Badge variant="outline" className="shrink-0 w-12 justify-center border-indigo-500/30 bg-indigo-500/10 text-indigo-300">L2 洞察</Badge>
               <span className="text-xs font-medium text-foreground">动态对比历史，识别变化速率与幅度</span>
             </div>
             <div className="flex items-center gap-3">
-              <Badge variant="outline" className="shrink-0 w-12 justify-center">L1 信号</Badge>
+              <Badge variant="outline" className="shrink-0 w-12 justify-center border-indigo-500/30 bg-indigo-500/10 text-indigo-300">L1 信号</Badge>
               <span className="text-xs font-medium text-foreground">6大专属Agent（侦察/解析/分析/简报/校验/接管）实时采集多国信号</span>
             </div>
           </div>
@@ -82,7 +82,7 @@ const demoSteps = [
           解决企业对AI"不可靠"的担忧，我们实现了工业级的风控机制：
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-          <div className="border border-border rounded-lg p-3">
+          <div className="bg-muted/10 border border-border rounded-lg p-3">
             <h4 className="text-xs font-bold text-foreground mb-2 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-500" /> 多源印证算法
             </h4>
@@ -91,7 +91,7 @@ const demoSteps = [
               单一孤证将被自动降级为"传闻"。
             </p>
           </div>
-          <div className="border border-border rounded-lg p-3">
+          <div className="bg-muted/10 border border-border rounded-lg p-3">
             <h4 className="text-xs font-bold text-foreground mb-2 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-destructive" /> 20% 自动熔断器
             </h4>
@@ -113,12 +113,12 @@ const demoSteps = [
           系统不是成本中心，而是利润中心。过去30天的试运行数据：
         </p>
         <div className="grid grid-cols-2 gap-3 mt-4">
-          <div className="bg-card border border-border p-4 rounded-lg text-center">
-            <p className="text-3xl font-black text-emerald-600 mb-1">1,240<span className="text-sm font-normal text-muted-foreground ml-1">小时</span></p>
+          <div className="bg-card border border-border p-4 rounded-lg text-center shadow-none">
+            <p className="text-3xl font-black text-emerald-500 mb-1">1,240<span className="text-sm font-normal text-muted-foreground ml-1">小时</span></p>
             <p className="text-xs text-muted-foreground">每月节省调研工时</p>
           </div>
-          <div className="bg-card border border-border p-4 rounded-lg text-center">
-            <p className="text-3xl font-black text-blue-600 mb-1">180<span className="text-sm font-normal text-muted-foreground ml-1">天</span></p>
+          <div className="bg-card border border-border p-4 rounded-lg text-center shadow-none">
+            <p className="text-3xl font-black text-blue-500 mb-1">180<span className="text-sm font-normal text-muted-foreground ml-1">天</span></p>
             <p className="text-xs text-muted-foreground">提前发现某国合规风险</p>
           </div>
         </div>
@@ -162,7 +162,7 @@ const DemoPage: React.FC = () => {
   const StepIcon = demoSteps[currentStep].icon;
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-950 dark text-slate-200 flex items-center justify-center p-4 relative overflow-hidden">
       {/* 背景装饰 */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-500/20 blur-[100px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-500/20 blur-[100px] rounded-full pointer-events-none" />
@@ -197,7 +197,9 @@ const DemoPage: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="p-8 bg-slate-900/80 border-slate-800 backdrop-blur-xl shadow-2xl">
+            <Card className="p-8 bg-slate-900/80 border-slate-800 backdrop-blur-xl shadow-2xl overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent pointer-events-none" />
+              <div className="relative z-10">
               <div className="flex flex-col md:flex-row gap-8">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-6">
@@ -236,6 +238,7 @@ const DemoPage: React.FC = () => {
                     <>下一步 <ArrowRight className="w-4 h-4 ml-2" /></>
                   )}
                 </Button>
+              </div>
               </div>
             </Card>
           </motion.div>
