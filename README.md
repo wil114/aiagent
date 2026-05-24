@@ -1,7 +1,5 @@
-# 欢迎使用你的秒哒应用代码包
-秒哒应用链接
-    URL:https://www.miaoda.cn/projects/app-btvkxctz25mp
-
+# 欢迎使用AIAGENT市场战略雷达
+公开网址：https://app-btvkxctz25mp.appmiaoda.com/
 ## 介绍
 
 项目介绍
