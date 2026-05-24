@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useNavigate } from 'react-router-dom';
 import {
   TrendingUp,
   Target,
@@ -13,6 +14,7 @@ import { useLiveROI } from '@/hooks/useLiveROI';
 
 const BusinessValueBoard: React.FC = () => {
   const stats = useLiveROI();
+  const navigate = useNavigate();
 
   return (
     <Card className="p-4 bg-gradient-to-br from-card to-muted/20 border-border">
@@ -27,13 +29,19 @@ const BusinessValueBoard: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div className="p-3 bg-background rounded-lg border border-border">
-          <div className="flex items-center gap-1.5 mb-1 text-muted-foreground">
-            <Clock className="w-3.5 h-3.5" />
-            <span className="text-[10px] font-medium">累计节省工时</span>
+        <div 
+          onClick={() => navigate('/ai-analysis')}
+          className="p-3 bg-background rounded-lg border border-border cursor-pointer hover:border-emerald-300 hover:shadow-md hover:-translate-y-0.5 transition-all group"
+        >
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-1.5 text-muted-foreground group-hover:text-emerald-600 transition-colors">
+              <Clock className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-medium">累计节省工时</span>
+            </div>
+            <span className="text-[9px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">查看详情 &rarr;</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-foreground tabular-nums">{stats.hoursSaved.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            <span className="text-xl font-bold text-foreground tabular-nums group-hover:text-emerald-600 transition-colors">{stats.hoursSaved.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             <span className="text-[10px] text-muted-foreground">小时</span>
           </div>
           <p className="text-[9px] text-emerald-600 mt-1 truncate" title={`基于处理的 ${stats.processedDocs.toLocaleString()} 篇市场长文测算`}>
@@ -41,22 +49,34 @@ const BusinessValueBoard: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-3 bg-background rounded-lg border border-border">
-          <div className="flex items-center gap-1.5 mb-1 text-muted-foreground">
-            <Lightbulb className="w-3.5 h-3.5" />
-            <span className="text-[10px] font-medium">发现商机信号</span>
+        <div 
+          onClick={() => navigate('/timeline')}
+          className="p-3 bg-background rounded-lg border border-border cursor-pointer hover:border-emerald-300 hover:shadow-md hover:-translate-y-0.5 transition-all group"
+        >
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-1.5 text-muted-foreground group-hover:text-emerald-600 transition-colors">
+              <Lightbulb className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-medium">发现商机信号</span>
+            </div>
+            <span className="text-[9px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">查看详情 &rarr;</span>
           </div>
           <div className="flex items-baseline gap-1">
             <span className="text-xl font-bold text-emerald-600 tabular-nums">{stats.opportunities}</span>
             <span className="text-[10px] text-muted-foreground">项</span>
           </div>
-          <p className="text-[9px] text-muted-foreground mt-1">已采纳 4 项战略动作</p>
+          <p className="text-[9px] text-muted-foreground mt-1 group-hover:text-emerald-600 transition-colors">已采纳 4 项战略动作</p>
         </div>
 
-        <div className="p-3 bg-background rounded-lg border border-border">
-          <div className="flex items-center gap-1.5 mb-1 text-muted-foreground">
-            <AlertTriangle className="w-3.5 h-3.5" />
-            <span className="text-[10px] font-medium">早期风险预警</span>
+        <div 
+          onClick={() => navigate('/risk-log')}
+          className="p-3 bg-background rounded-lg border border-border cursor-pointer hover:border-amber-300 hover:shadow-md hover:-translate-y-0.5 transition-all group"
+        >
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-1.5 text-muted-foreground group-hover:text-amber-600 transition-colors">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-medium">早期风险预警</span>
+            </div>
+            <span className="text-[9px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">查看日志 &rarr;</span>
           </div>
           <div className="flex items-baseline gap-1">
             <span className="text-xl font-bold text-amber-600 tabular-nums">{stats.warnings}</span>
@@ -65,24 +85,36 @@ const BusinessValueBoard: React.FC = () => {
           <p className="text-[9px] text-emerald-600 mt-1">平均提前 5.2 天预警</p>
         </div>
 
-        <div className="p-3 bg-background rounded-lg border border-border">
-          <div className="flex items-center gap-1.5 mb-1 text-muted-foreground">
-            <Target className="w-3.5 h-3.5" />
-            <span className="text-[10px] font-medium">跨市场传导命中率</span>
+        <div 
+          onClick={() => navigate('/confidence')}
+          className="p-3 bg-background rounded-lg border border-border cursor-pointer hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5 transition-all group"
+        >
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-1.5 text-muted-foreground group-hover:text-blue-600 transition-colors">
+              <Target className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-medium">跨市场传导命中率</span>
+            </div>
+            <span className="text-[9px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">置信度分析 &rarr;</span>
           </div>
           <div className="flex items-baseline gap-1">
             <span className="text-xl font-bold text-blue-600 tabular-nums">{stats.accuracy.toFixed(1)}%</span>
           </div>
-          <p className="text-[9px] text-muted-foreground mt-1">动态回归评估</p>
+          <p className="text-[9px] text-muted-foreground mt-1 group-hover:text-blue-600 transition-colors">动态回归评估</p>
         </div>
       </div>
 
-      <div className="bg-background rounded-lg border border-border p-3">
-        <div className="flex items-center gap-1.5 mb-2">
-          <TrendingUp className="w-3.5 h-3.5 text-primary" />
-          <span className="text-xs font-semibold">标杆成功案例：跨市场信号传导预测</span>
+      <div 
+        onClick={() => navigate('/event/evt-001')}
+        className="bg-background rounded-lg border border-border p-3 cursor-pointer hover:border-primary/50 hover:shadow-md transition-all group"
+      >
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-1.5">
+            <TrendingUp className="w-3.5 h-3.5 text-primary" />
+            <span className="text-xs font-semibold group-hover:text-primary transition-colors">标杆成功案例：跨市场信号传导预测</span>
+          </div>
+          <span className="text-[10px] text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">查看详情 &rarr;</span>
         </div>
-        <div className="text-[11px] text-muted-foreground leading-relaxed">
+        <div className="text-[11px] text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors">
           <p className="mb-1">
             <span className="text-foreground font-medium">【预测路径】</span>
             美国FTC培育钻石标签政策收紧信号 (T-90天) → 欧盟环保法案跟进 (T-30天) → 成功指导中国出海供应链合规整改。

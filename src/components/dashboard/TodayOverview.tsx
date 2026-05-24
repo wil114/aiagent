@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import {
   AlertTriangle,
@@ -16,6 +17,8 @@ interface TodayOverviewProps {
 }
 
 const TodayOverview: React.FC<TodayOverviewProps> = ({ events }) => {
+  const navigate = useNavigate();
+  
   const criticalCount = events.filter((e) => e.urgency === 'critical').length;
   const highCount = events.filter((e) => e.urgency === 'high').length;
   const confirmedCount = events.filter((e) => e.confidence === 'confirmed').length;
@@ -30,6 +33,7 @@ const TodayOverview: React.FC<TodayOverviewProps> = ({ events }) => {
       icon: AlertTriangle,
       color: 'text-amber-600',
       bg: 'bg-amber-50',
+      action: () => document.getElementById('event-list-section')?.scrollIntoView({ behavior: 'smooth' }),
     },
     {
       label: '已核实',
@@ -38,6 +42,7 @@ const TodayOverview: React.FC<TodayOverviewProps> = ({ events }) => {
       icon: ShieldCheck,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50',
+      action: () => navigate('/confidence'),
     },
     {
       label: '跨市场机会',
@@ -46,6 +51,7 @@ const TodayOverview: React.FC<TodayOverviewProps> = ({ events }) => {
       icon: Globe,
       color: 'text-blue-600',
       bg: 'bg-blue-50',
+      action: () => document.getElementById('risk-radar-section')?.scrollIntoView({ behavior: 'smooth' }),
     },
     {
       label: '待复核',
@@ -54,6 +60,7 @@ const TodayOverview: React.FC<TodayOverviewProps> = ({ events }) => {
       icon: Clock,
       color: 'text-rose-600',
       bg: 'bg-rose-50',
+      action: () => navigate('/review'),
     },
   ];
 
@@ -94,17 +101,23 @@ const TodayOverview: React.FC<TodayOverviewProps> = ({ events }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
             >
-              <Card className="p-3 hover:shadow-md transition-shadow">
+              <Card 
+                className="p-3 hover:shadow-md transition-all cursor-pointer hover:border-primary/40 hover:-translate-y-0.5 group"
+                onClick={stat.action}
+              >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-xs text-muted-foreground">{stat.label}</p>
-                    <p className="text-2xl font-bold text-foreground mt-0.5">{stat.value}</p>
+                    <p className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{stat.label}</p>
+                    <p className="text-2xl font-bold text-foreground mt-0.5 group-hover:text-primary transition-colors">{stat.value}</p>
                   </div>
                   <div className={`w-8 h-8 rounded-lg ${stat.bg} flex items-center justify-center`}>
                     <Icon className={`w-4 h-4 ${stat.color}`} />
                   </div>
                 </div>
-                <p className="text-[10px] text-muted-foreground mt-1.5">{stat.sub}</p>
+                <p className="text-[10px] text-muted-foreground mt-1.5 flex items-center justify-between">
+                  <span>{stat.sub}</span>
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity">点击查看 &rarr;</span>
+                </p>
               </Card>
             </motion.div>
           );
