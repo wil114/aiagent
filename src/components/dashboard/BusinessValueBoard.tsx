@@ -9,17 +9,20 @@ import {
   AlertTriangle,
   Lightbulb,
 } from 'lucide-react';
+import { useLiveROI } from '@/hooks/useLiveROI';
 
 const BusinessValueBoard: React.FC = () => {
+  const stats = useLiveROI();
+
   return (
     <Card className="p-4 bg-gradient-to-br from-card to-muted/20 border-border">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Briefcase className="w-5 h-5 text-primary" />
-          <h2 className="text-sm font-bold text-foreground">系统业务价值 ROI</h2>
+          <h2 className="text-sm font-bold text-foreground">系统业务价值 ROI (实时推演)</h2>
         </div>
-        <Badge variant="secondary" className="text-[10px] font-normal">
-          统计周期: 过去30天
+        <Badge variant="secondary" className="text-[10px] font-normal animate-pulse bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+          ● 实时计算中
         </Badge>
       </div>
 
@@ -27,22 +30,24 @@ const BusinessValueBoard: React.FC = () => {
         <div className="p-3 bg-background rounded-lg border border-border">
           <div className="flex items-center gap-1.5 mb-1 text-muted-foreground">
             <Clock className="w-3.5 h-3.5" />
-            <span className="text-[10px] font-medium">节省调研时间</span>
+            <span className="text-[10px] font-medium">累计节省工时</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-foreground">1,240</span>
+            <span className="text-xl font-bold text-foreground tabular-nums">{stats.hoursSaved.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             <span className="text-[10px] text-muted-foreground">小时</span>
           </div>
-          <p className="text-[9px] text-emerald-600 mt-1">≈ 节省3名全职分析师产能</p>
+          <p className="text-[9px] text-emerald-600 mt-1 truncate" title={`基于处理的 ${stats.processedDocs.toLocaleString()} 篇市场长文测算`}>
+            ≈ 处理 {stats.processedDocs.toLocaleString()} 篇情报
+          </p>
         </div>
 
         <div className="p-3 bg-background rounded-lg border border-border">
           <div className="flex items-center gap-1.5 mb-1 text-muted-foreground">
             <Lightbulb className="w-3.5 h-3.5" />
-            <span className="text-[10px] font-medium">发现商机</span>
+            <span className="text-[10px] font-medium">发现商机信号</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-emerald-600">12</span>
+            <span className="text-xl font-bold text-emerald-600 tabular-nums">{stats.opportunities}</span>
             <span className="text-[10px] text-muted-foreground">项</span>
           </div>
           <p className="text-[9px] text-muted-foreground mt-1">已采纳 4 项战略动作</p>
@@ -54,7 +59,7 @@ const BusinessValueBoard: React.FC = () => {
             <span className="text-[10px] font-medium">早期风险预警</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-amber-600">8</span>
+            <span className="text-xl font-bold text-amber-600 tabular-nums">{stats.warnings}</span>
             <span className="text-[10px] text-muted-foreground">次</span>
           </div>
           <p className="text-[9px] text-emerald-600 mt-1">平均提前 5.2 天预警</p>
@@ -66,9 +71,9 @@ const BusinessValueBoard: React.FC = () => {
             <span className="text-[10px] font-medium">跨市场传导命中率</span>
           </div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-blue-600">85%</span>
+            <span className="text-xl font-bold text-blue-600 tabular-nums">{stats.accuracy.toFixed(1)}%</span>
           </div>
-          <p className="text-[9px] text-muted-foreground mt-1">成功预测 6 起市场波动</p>
+          <p className="text-[9px] text-muted-foreground mt-1">动态回归评估</p>
         </div>
       </div>
 

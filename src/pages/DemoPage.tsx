@@ -15,6 +15,43 @@ import {
   Briefcase,
   Layers,
 } from 'lucide-react';
+import { useLiveROI } from '@/hooks/useLiveROI';
+import { Badge } from '@/components/ui/badge';
+
+const ROIStepContent = () => {
+  const stats = useLiveROI();
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          系统不是成本中心，而是利润中心。基于本月真实拦截数据的<strong className="text-emerald-400">实时推演</strong>：
+        </p>
+        <span className="text-[10px] text-emerald-400/80 border border-emerald-400/20 bg-emerald-400/10 px-2 py-0.5 rounded-full animate-pulse flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          Live
+        </span>
+      </div>
+      <div className="grid grid-cols-2 gap-3 mt-4">
+        <div className="bg-card border border-border p-4 rounded-lg text-center shadow-none relative overflow-hidden group">
+          <div className="absolute inset-0 bg-emerald-500/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          <p className="text-3xl font-black text-emerald-500 mb-1 tabular-nums transition-all duration-300">
+            {stats.hoursSaved.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+            <span className="text-sm font-normal text-muted-foreground ml-1">小时</span>
+          </p>
+          <p className="text-xs text-muted-foreground">累计节省人工调研工时</p>
+        </div>
+        <div className="bg-card border border-border p-4 rounded-lg text-center shadow-none relative overflow-hidden group">
+          <div className="absolute inset-0 bg-blue-500/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          <p className="text-3xl font-black text-blue-500 mb-1 tabular-nums transition-all duration-300">
+            {stats.processedDocs.toLocaleString()}
+            <span className="text-sm font-normal text-muted-foreground ml-1">篇</span>
+          </p>
+          <p className="text-xs text-muted-foreground">处理跨市场深层情报数</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const demoSteps = [
   {
@@ -107,23 +144,7 @@ const demoSteps = [
     id: 'roi',
     title: '商业价值：直接创造业务 ROI',
     icon: TrendingUp,
-    content: (
-      <div className="space-y-4">
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          系统不是成本中心，而是利润中心。过去30天的试运行数据：
-        </p>
-        <div className="grid grid-cols-2 gap-3 mt-4">
-          <div className="bg-card border border-border p-4 rounded-lg text-center shadow-none">
-            <p className="text-3xl font-black text-emerald-500 mb-1">1,240<span className="text-sm font-normal text-muted-foreground ml-1">小时</span></p>
-            <p className="text-xs text-muted-foreground">每月节省调研工时</p>
-          </div>
-          <div className="bg-card border border-border p-4 rounded-lg text-center shadow-none">
-            <p className="text-3xl font-black text-blue-500 mb-1">180<span className="text-sm font-normal text-muted-foreground ml-1">天</span></p>
-            <p className="text-xs text-muted-foreground">提前发现某国合规风险</p>
-          </div>
-        </div>
-      </div>
-    ),
+    content: <ROIStepContent />
   },
   {
     id: 'action',
@@ -140,8 +161,6 @@ const demoSteps = [
     ),
   },
 ];
-
-import { Badge } from '@/components/ui/badge';
 
 const DemoPage: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
